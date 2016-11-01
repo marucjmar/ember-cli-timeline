@@ -72,9 +72,14 @@ export default Ember.Component.extend({
     if (activeIndex<= 0){
       $('html').css("overflow", "auto");
     }
-  })
+  }),
 
+  willDestroyElement(){
+    this._super(..arguments);
+    this.$().unbind('mousewheel');
+    Ember.$(window).unbind('scroll');
 
+  }
 
 
 

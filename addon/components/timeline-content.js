@@ -3,10 +3,7 @@ import layout from '../templates/components/timeline-content';
 
 const {
   run,
-  isEqual,
   observer,
-  addObserver,
-  removeObserver
 } = Ember;
 
 export default Ember.Component.extend({
@@ -80,6 +77,7 @@ export default Ember.Component.extend({
   }),
 
   willDestroyElement(){
+    this._super(...arguments);
 
     if (this._mouseWheelListner){
       this.$().off('mousewheel', this._mouseWheelListner);

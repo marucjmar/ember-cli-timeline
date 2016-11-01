@@ -15,19 +15,23 @@ export default Ember.Component.extend({
   tagName: 'section',
 
   activeIndex: 0,
+  canScroll: false,
   items: [],
 
   didInsertElement: function(){
     var selfs = this;
     this.$().on('mousewheel', function(e){
-      selfs.scroll(e);
+      if (this.get('canScroll'))
+        selfs.scroll(e);
     });
 
     Ember.$(document).scroll(function(){
       if (selfs.$().scrollTop() <= 0){
-        $(document).css("overflow", "hidden");
+        $('html').css("overflow", "hidden");
+        this.set('canScroll', true);
       }else{
-        $(document).css("overflow", "auto");
+        $('html').css("overflow", "auto");
+        this.set('canScroll', false);
       }
     });
   },
@@ -64,8 +68,9 @@ export default Ember.Component.extend({
     if (activeIndex >= length-3)
       this.get('items').pushObjects([4,5,6,7]);
 
-    if (activeIndex<= 0)
-      $(document).css("overflow", "auto");
+    if (activeIndex<= 0){
+      $('html').css("overflow", "auto");
+    }
   })
 
 

@@ -26,6 +26,8 @@ export default Ember.Component.extend({
     Ember.$(document).scroll(function(){
       if (selfs.$().scrollTop() <= 0){
         $("body").css("overflow", "hidden");
+      }else{
+        $("body").css("overflow", "auto");
       }
     });
   },

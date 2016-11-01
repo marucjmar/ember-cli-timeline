@@ -27,7 +27,6 @@ export default Ember.Component.extend({
     var eTop = selfs.$().offset().top;
 
     Ember.$(document).scroll(function(){
-      console.log(eTop - Ember.$(window).scrollTop() )
       if (eTop - Ember.$(window).scrollTop() < 0){
         $('html').css("overflow", "hidden");
         selfs.set('canScroll', true);

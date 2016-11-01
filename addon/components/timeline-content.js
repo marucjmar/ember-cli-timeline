@@ -17,33 +17,38 @@ export default Ember.Component.extend({
   activeIndex: 0,
   canScroll: false,
   items: [],
+  _mouseWheelListner: null,
+  _scroolListner: null,
 
   didInsertElement: function(){
-    var selfs = this;
-    this.$().on('mousewheel', function(e){
-      if (selfs.get('canScroll'))
-        selfs.scroll(e);
-    });
-    var eTop = selfs.$().offset().top;
+    this._mouseWheelListner = Ember.run.bind(this, this.scroll);
+    this._scroolListner = Ember.run.bind(this, this.manageScroll);
 
-    Ember.$(document).scroll(function(){
-      if (eTop - Ember.$(window).scrollTop() < 0){
-        $('html').css("overflow", "hidden");
-        selfs.set('canScroll', true);
-      }else{
-        $('html').css("overflow", "auto");
-        selfs.set('canScroll', false);
-      }
-    });
+    this.$().on('mousewheel',this._mouseWheelListner);
+    Ember.$(document).scroll(this._scroolListner );
+  },
+
+  manageScroll(){
+    var eTop = this.$().offset().top;
+
+    if (eTop - Ember.$(window).scrollTop() < 0){
+      Ember.$('html').css("overflow", "hidden");
+      this.set('canScroll', true);
+    }else{
+      Ember.$('html').css("overflow", "auto");
+      this.set('canScroll', false);
+    }
   },
 
   scroll: function(e){
-    var e = window.event || e; // old IE support
-    var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
-    if (delta > 0){
-      run.debounce(this, this.prev, 100, true);
-    }else {
-      run.debounce(this, this.next, 100, true);
+    if (this.get('canScroll')){
+      var e = window.event || e; // old IE support
+      var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
+      if (delta > 0){
+        run.debounce(this, this.prev, 100, true);
+      }else {
+        run.debounce(this, this.next, 100, true);
+      }
     }
   },
 
@@ -75,9 +80,17 @@ export default Ember.Component.extend({
   }),
 
   willDestroyElement(){
-    this._super(...arguments);
-    this.$().off('mousewheel');
-    Ember.$(window).unbind('scroll');
+
+    if (this._mouseWheelListner){
+      this.$().off('mousewheel', this._mouseWheelListner);
+      this.$().unbind('mousewheel', this._mouseWheelListner);
+    }
+
+    if (this._scroolListner) {
+      Ember.$(window).off('scroll', this._scroolListner);
+      Ember.$(window).unbind('scroll', this._scroolListner);
+    }
+
   }
 
 

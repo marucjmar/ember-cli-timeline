@@ -22,6 +22,12 @@ export default Ember.Component.extend({
     this.$().on('mousewheel', function(e){
       selfs.scroll(e);
     });
+
+    Ember.$(document).scroll(function(){
+      if (selfs.$().scrollTop() <= 0){
+        $("body").css("overflow", "hidden");
+      }
+    });
   },
 
   scroll: function(e){
@@ -54,7 +60,10 @@ export default Ember.Component.extend({
     let activeIndex = this.get('activeIndex');
 
     if (activeIndex >= length-3)
-      this.get('items').pushObjects([4,5,6,7])
+      this.get('items').pushObjects([4,5,6,7]);
+
+    if (activeIndex<= 0)
+      $("body").css("overflow", "auto");
   })
 
 

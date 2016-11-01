@@ -25,7 +25,7 @@ export default Ember.Component.extend({
     this._scroolListner = Ember.run.bind(this, this.manageScroll);
 
     this.$().on('mousewheel',this._mouseWheelListner);
-    Ember.$(document).scroll(this._scroolListner );
+    Ember.$(document).on('scroll',this._scroolListner );
   },
 
   manageScroll(){

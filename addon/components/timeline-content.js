@@ -76,9 +76,8 @@ export default Ember.Component.extend({
 
   willDestroyElement(){
     this._super(...arguments);
-    this.$().unbind('mousewheel');
+    this.$().off('mousewheel');
     Ember.$(window).unbind('scroll');
-
   }
 
 

@@ -21,18 +21,19 @@ export default Ember.Component.extend({
   didInsertElement: function(){
     var selfs = this;
     this.$().on('mousewheel', function(e){
-      if (this.get('canScroll'))
+      if (selfs.get('canScroll'))
         selfs.scroll(e);
     });
-    var eTop = selfs.$().offset().top; 
+    var eTop = selfs.$().offset().top;
 
     Ember.$(document).scroll(function(){
-      if (eTop - $(window).scrollTop() <= 0){
+      console.log(eTop - Ember.$(window).scrollTop() )
+      if (eTop - Ember.$(window).scrollTop() < 0){
         $('html').css("overflow", "hidden");
-        this.set('canScroll', true);
+        selfs.set('canScroll', true);
       }else{
         $('html').css("overflow", "auto");
-        this.set('canScroll', false);
+        selfs.set('canScroll', false);
       }
     });
   },

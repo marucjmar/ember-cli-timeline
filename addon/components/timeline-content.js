@@ -28,9 +28,9 @@ export default Ember.Component.extend({
     var e = window.event || e; // old IE support
     var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
     if (delta > 0){
-      run.debounce(this, this.next, 100, true);
-    }else {
       run.debounce(this, this.prev, 100, true);
+    }else {
+      run.debounce(this, this.next, 100, true);
     }
   },
 

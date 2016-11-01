@@ -1,0 +1,7 @@
+{{#each items as |item index|}}
+  {{#timeline-item index=index activeIndex=activeIndex}}
+    {{yield item}}
+  {{/timeline-item}}
+{{/each}}
+
+<div class="timelinepath "></div>

@@ -1,0 +1,181 @@
+.timeline-item{
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  -o-transform: none;
+  transform: none;
+  border-radius: 0px;
+  height: auto;
+  display: inline-block;
+  padding-bottom: 7px;
+  bottom: 23%;
+  width: 68%;
+  margin-left: 16%;
+  position: absolute;
+
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  -webkit-transition:all .7s ease;
+  -moz-transition:all .7s ease;
+  -o-transition:all .7s ease;
+  -ms-transition:all .7s ease;
+  transition:all .7s ease;
+
+
+}
+
+.right-content{
+  position: relative;
+  width: 44%;
+  float: right;
+}
+
+
+
+
+
+.timeline-item:before{
+  content: "";
+  height: 1px;
+  background: rgba(255,255,255,0.3);
+  background: -moz-linear-gradient(left, rgba(255,255,255,1) 50%,rgba(255,255,255,0.0) 100%);
+  background: -webkit-linear-gradient(left,rgba(255,255,255,1) 50%,rgba(255,255,255,0.0) 100%);
+  background: -ms-linear-gradient(left, rgba(255,255,255,1) 50%,rgba(255,255,255,0.0) 100%);
+  background: -o-linear-gradient(left, rgba(255,255,255,1) 50%,rgba(255,255,255,0.0) 100%);
+  background: linear-gradient(left, rgba(255,255,255,1) 50%,rgba(255,255,255,0.0) 100%);
+  width: 50%;
+  right: 0%;
+  margin-right: -46px;
+  display: block;
+  bottom: -25px;
+  position: absolute;
+  opacity: 1!important;
+  -webkit-transition: all 0.25s;
+  -moz-transition: all 0.25s;
+  -ms-transition: all 0.25s;
+  -o-transition: all 0.25s;
+  transition: all 0.25s;
+  z-index: -2;
+}
+
+.timeline-item:after{
+  content: "";
+  height: 1px;
+  background: rgba(255,255,255,0.3);
+  background: -moz-linear-gradient(left, rgba(255,255,255,0.0) 0%,rgba(255,255,255,0.5));
+  background: -webkit-linear-gradient(left, rgba(255,255,255,0.0) 0%,rgba(255,255,255,0.5));
+  background: -ms-linear-gradient(left, rgba(255,255,255,0.0) 0%,rgba(255,255,255,0.5));
+  background: -o-linear-gradient(left, rgba(255,255,255,0.0) 0%,rgba(255,255,255,0.5));
+  background: linear-gradient(left, rgba(255,255,255,0.0) 0%,rgba(255,255,255,0.5));
+  width: 50%;
+  margin-left: -46px;
+  display: block;
+  bottom: -25px;
+  position: absolute;
+  -webkit-transition: all 0.25s;
+  -moz-transition: all 0.25s;
+  -ms-transition: all 0.25s;
+  -o-transition: all 0.25s;
+  transition: all 0.25s;
+  z-index: -2;
+}
+
+.timeline-item.is-before-screen{
+   transform: translate3d(0px, 0px, 670px);
+ }
+
+.timeline-item.before-active{
+   opacity: .5;
+   transform: translate3d(0px, 0px, -300px);
+ }
+
+
+body, html{
+  height: 100%;
+}
+
+.timeline-content{
+  perspective: 600px;
+  position: absolute;
+  left: 0px;
+  top:0px;
+  right: 0px;
+  bottom:0px;
+}
+
+.timelinepath{
+  left: 110%;
+  position: fixed;
+  z-index: -1!important;
+}
+
+.timelinepath:before {
+  background: rgba(0,0,0,0.9);
+  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.0) 0%, rgba(0,0,0,0.9) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0, 0, 0, 0.0)), color-stop(100%,rgba(0,0,0,0.9)));
+  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.0) 20%,rgba(0,0,0,0.9) 100%);
+  background: -o-linear-gradient(top, rgba(0, 0, 0, 0.0) 0%,rgba(0,0,0,0.9) 100%);
+  background: -ms-linear-gradient(top, rgba(0, 0, 0, 0.0) 0%,rgba(0,0,0,0.9) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='rgba(0, 0, 0, 0.0)', endColorstr='rgba(0,0,0,0.9)',GradientType=0 );
+}
+
+.timelinepath:before {
+  content: '';
+  width: 50%;
+  z-index: -15!important;
+  left: -0%;
+  height: 110%;
+  background: #000;
+  position: fixed;
+  margin-left: 25%;
+  bottom: -20%;
+  transform: perspective( 500px ) rotateX(70deg);
+  -webkit-transform-style: preserve-3d;
+  -webkit-transform: perspective( 500px ) rotateX(70deg) translateY(30px);
+  -moz-transform: perspective( 500px ) rotateX(70deg);
+  -ms-transform: perspective( 500px ) rotateX(70deg) translateY(-120px);
+  -o-transform: perspective( 500px ) rotateX(70deg);
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s linear;
+  -ms-transition: all 0.5s linear;
+  -o-transition: all 0.5s linear;
+  transition: all 0.5s ease;
+  background: rgba(0, 0, 0, 0.4);
+  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.9) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0, 0, 0, 0.0)), color-stop(100%,rgba(0, 0, 0, 0.90)));
+  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.0) 20%,rgba(0, 0, 0, 0.90) 100%);
+  background: -o-linear-gradient(top, rgba(0, 0, 0, 0.0) 0%,rgba(0, 0, 0, 0.9) 100%);
+  background: -ms-linear-gradient(top, rgba(0, 0, 0, 0.0) 0%,rgba(0, 0, 0, 0.9) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='rgba(0, 0, 0, 0.0)', endColorstr='rgba(0, 0, 0, 0.9)',GradientType=0 );
+}
+
+body{
+  background: url(https://cray.bg/themes/time-travel/wp-content/uploads/2014/01/defbg1.jpg);
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+
+.content-post {
+  width: 44%;
+}
+
+.header{
+  width: 100%;
+  max-height: 300px;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  cursor: default;
+}
+
+.header img{
+  width: 100%;
+  height: auto;
+}
+
+.content-post .content{
+  padding: 20px;
+  background-color: #5EC6B6;
+  opacity: 1;
+}
+

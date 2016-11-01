@@ -25,9 +25,9 @@ export default Ember.Component.extend({
 
     Ember.$(document).scroll(function(){
       if (selfs.$().scrollTop() <= 0){
-        $("body").css("overflow", "hidden");
+        $(document).css("overflow", "hidden");
       }else{
-        $("body").css("overflow", "auto");
+        $(document).css("overflow", "auto");
       }
     });
   },
@@ -65,7 +65,7 @@ export default Ember.Component.extend({
       this.get('items').pushObjects([4,5,6,7]);
 
     if (activeIndex<= 0)
-      $("body").css("overflow", "auto");
+      $(document).css("overflow", "auto");
   })
 
 

@@ -24,33 +24,54 @@ export default Ember.Component.extend({
     this.set('isActive', activeIndex == index);
   })),
 
-  setStyle: on('didInsertElement',observer('activeIndex', 'index', 'isActive', function(){
+  setTranslate: observer('activeIndex', 'index', 'isActive', function(){
+    let translateZ = this._calculateTranslate();
+
+    if (translateZ > -4000 || translateZ < 4000 ){
+      this.setTranslateZ(translateZ);
+    }
+  }),
+
+  setDefaultStyle: on('didInsertElement', function(){
+    let translateZ = this._calculateTranslate;
+    this.setTranslateZ(translateZ);
+  }),
+
+  _calculateTranslate(){
+    let {activeIndex, index} = this.getProperties("activeIndex", "index", 'isActive');
+
+    var zang = 400;
+
+    if ((index - activeIndex)*600*-1 >= 600){
+      zang = 600;
+    }
+
+    let translateZ = (index - activeIndex)*zang*-1;
+
+    return translateZ;
+  },
+
+  setTranslateZ: function(translate){
     let {activeIndex, index, isActive} = this.getProperties("activeIndex", "index", 'isActive');
 
-      var zang = 400;
+    this.$().css('transform', `translate3d(0px, 0px, ${translate}px)`);
+    this.$().css('zIndex', index);
 
-      if ((index - activeIndex)*600*-1 >= 600){
-        zang = 600;
-      }
+    if (!isActive){
+      let op = index - activeIndex;
 
-      this.$().css('transform', `translate3d(0px, 0px, ${(index - activeIndex)*zang*-1}px)`);
-      this.$().css('zIndex', index);
-
-      if (!isActive){
-        let op = index - activeIndex;
-
-        if (index - 1 == activeIndex) {
-          op = 5;
-        }else if (index - 2 == activeIndex) {
-          op = 1;
-        }else {
-          op = 0;
-        }
-
-        this.$().css('opacity', `.${op}`);
+      if (index - 1 == activeIndex) {
+        op = 5;
+      }else if (index - 2 == activeIndex) {
+        op = 1;
       }else {
-        this.$().css('opacity', ".9");
+        op = 0;
       }
-  })),
+
+      this.$().css('opacity', `.${op}`);
+    }else {
+      this.$().css('opacity', ".9");
+    }
+  }
 
 });

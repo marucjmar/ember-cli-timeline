@@ -68,9 +68,6 @@ export default Ember.Component.extend({
     let length = this.get('items.length');
     let activeIndex = this.get('activeIndex');
 
-    if (activeIndex >= length-3)
-      this.get('items').pushObjects([4,5,6,7]);
-
     if (activeIndex<= 0){
       $('html').css("overflow", "auto");
     }

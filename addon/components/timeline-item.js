@@ -55,7 +55,7 @@ export default Ember.Component.extend({
     let {activeIndex, index, isActive} = this.getProperties("activeIndex", "index", 'isActive');
 
     this.$().css('transform', `translate3d(0px, 0px, ${translate}px)`);
-    this.$().css('zIndex', index);
+    this.$().css('zIndex', index*-1);
 
     if (!isActive){
       let op = index - activeIndex;

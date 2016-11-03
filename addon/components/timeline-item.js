@@ -27,7 +27,7 @@ export default Ember.Component.extend({
   setTranslate: observer('activeIndex', 'index', 'isActive', function(){
     let translateZ = this._calculateTranslate();
 
-    if (translateZ > -4000 || translateZ < 4000 ){
+    if ((translateZ > -4000 && translateZ < 0 ) || (translateZ < 4000 && translateZ > 0 ) ){
       this.setTranslateZ(translateZ);
     }
   }),
